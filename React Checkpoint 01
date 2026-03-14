@@ -1,0 +1,220 @@
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Card, Container, Row, Col, Alert } from 'react-bootstrap';
+
+// ============== PRODUCT DATA ==============
+const product = {
+  name: "Wireless Noise-Cancelling Headphones",
+  price: "$299.99",
+  description: "Premium wireless headphones with active noise cancellation, 30-hour battery life, and crystal-clear sound quality. Perfect for music lovers and frequent travelers.",
+  image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhZHBob25lc3xlbnwwfHwwfHx8MA%3D%3D"
+};
+
+// ============== COMPONENTS ==============
+const Name = () => {
+  return (
+    <h2 className="product-name" style={{ 
+      color: '#2c3e50', 
+      marginBottom: '10px',
+      fontSize: '1.8rem',
+      fontWeight: 'bold'
+    }}>
+      {product.name}
+    </h2>
+  );
+};
+
+const Price = () => {
+  return (
+    <p className="product-price" style={{ 
+      fontSize: '1.5rem', 
+      color: '#e67e22',
+      fontWeight: 'bold',
+      marginBottom: '10px'
+    }}>
+      {product.price}
+    </p>
+  );
+};
+
+const Description = () => {
+  return (
+    <p className="product-description" style={{ 
+      color: '#7f8c8d', 
+      lineHeight: '1.6',
+      fontSize: '1rem',
+      marginBottom: '15px',
+      fontStyle: 'italic'
+    }}>
+      {product.description}
+    </p>
+  );
+};
+
+const Image = () => {
+  return (
+    <div className="product-image-container" style={{ 
+      textAlign: 'center', 
+      marginBottom: '20px',
+      overflow: 'hidden',
+      borderRadius: '8px 8px 0 0'
+    }}>
+      <img 
+        src={product.image} 
+        alt={product.name}
+        style={{ 
+          width: '100%', 
+          height: 'auto',
+          maxHeight: '300px',
+          objectFit: 'cover',
+          transition: 'transform 0.3s ease'
+        }}
+        onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+      />
+    </div>
+  );
+};
+
+// ============== MAIN APP COMPONENT ==============
+// Change this to your name to see the different message and image
+const firstName = "John"; // Change to your name or leave empty string ""
+
+function App() {
+  // Inline styles for creative elements
+  const styles = {
+    body: {
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      minHeight: '100vh',
+      padding: '20px 0'
+    },
+    card: {
+      width: '100%', 
+      borderRadius: '15px',
+      boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+      overflow: 'hidden',
+      border: 'none',
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      padding: '3px',
+      animation: 'slideIn 0.5s ease-out'
+    },
+    cardInner: {
+      background: 'white', 
+      borderRadius: '12px'
+    },
+    offerBadge: {
+      borderTop: '2px dashed #3498db',
+      marginTop: '20px',
+      paddingTop: '15px',
+      textAlign: 'center'
+    },
+    offerText: {
+      backgroundColor: '#3498db',
+      color: 'white',
+      padding: '5px 15px',
+      borderRadius: '20px',
+      fontSize: '0.9rem',
+      display: 'inline-block'
+    },
+    alert: {
+      borderRadius: '50px',
+      boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+      fontSize: '1.2rem',
+      padding: '15px 20px'
+    },
+    greetingContainer: {
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center', 
+      gap: '10px'
+    },
+    profileImage: {
+      width: '40px',
+      height: '40px',
+      borderRadius: '50%',
+      marginLeft: '10px',
+      border: '2px solid white',
+      boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
+    },
+    footer: {
+      color: '#7f8c8d',
+      fontSize: '0.9rem'
+    }
+  };
+
+  // Animation keyframes as a style tag
+  const animationStyles = `
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  `;
+
+  return (
+    <>
+      <style>{animationStyles}</style>
+      <div style={styles.body}>
+        <Container className="mt-5">
+          <Row className="justify-content-center">
+            <Col md={6}>
+              {/* Product Card */}
+              <Card style={styles.card}>
+                <div style={styles.cardInner}>
+                  <Image />
+                  <Card.Body style={{ padding: '25px' }}>
+                    <Name />
+                    <Price />
+                    <Description />
+                    
+                    {/* Creative styling elements */}
+                    <div style={styles.offerBadge}>
+                      <span style={styles.offerText}>
+                        Limited Time Offer
+                      </span>
+                    </div>
+                  </Card.Body>
+                </div>
+              </Card>
+
+              {/* Greeting message with creative styling */}
+              <Alert 
+                variant={firstName ? "success" : "info"} 
+                className="mt-4 text-center"
+                style={styles.alert}
+              >
+                <div style={styles.greetingContainer}>
+                  <span>👋</span>
+                  <span>
+                    Hello, {firstName ? firstName : 'there'}!
+                  </span>
+                  {firstName && (
+                    <img 
+                      src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+                      alt="Profile"
+                      style={styles.profileImage}
+                    />
+                  )}
+                </div>
+              </Alert>
+
+              {/* Additional creative element */}
+              <div className="text-center mt-3" style={styles.footer}>
+                <p>
+                  ⭐⭐⭐⭐⭐ {firstName ? firstName + "'s" : ''} Premium Pick
+                </p>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </>
+  );
+}
+
+export default App;
